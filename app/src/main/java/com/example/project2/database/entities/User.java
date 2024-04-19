@@ -1,13 +1,13 @@
-package com.example.project2.Database.entities;
+package com.example.project2.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.project2.Database.UserDatabase;
+import com.example.project2.database.ProjectDataBase;
 
 import java.util.Objects;
 
-@Entity (tableName = UserDatabase.USER_TABLE)
+@Entity (tableName = ProjectDataBase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -15,10 +15,10 @@ public class User {
     private String password;
     private boolean isAdmin;
 
-    public User(String username, String password, boolean isAdmin){
+    public User(String username, String password){
         this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
+        isAdmin = false;
     }
 
     @Override

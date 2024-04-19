@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private UserRepository repository;
     public static final String TAG = "DAC_CALORIE_TRACKER";
+    int loggedInUserID = -1;
+    //TODO: Add login information
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

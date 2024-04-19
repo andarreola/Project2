@@ -1,5 +1,6 @@
 package com.example.project2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        loginUser();
+        if(loggedInUserID == -1){
+            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+            startActivity(intent);
+        }
         repository = UserRepository.getRepository(getApplication());
+    }
+
+    private void loginUser() {
+        //TODO: create login method
     }
 }

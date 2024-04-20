@@ -31,34 +31,34 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!verifyUser()){
-                    toastMaker("Invalid username or password");
-                } else {
-                    //Run landing page once that is implemented.
-                }
+                verifyUser();
             }
         });
     }
 
-    private boolean verifyUser(){
+    private void verifyUser(){
         String username = binding.userNameLoginEditText.getText().toString();
+
         if(username.isEmpty()){
             toastMaker("Username may not be blank");
-            return false;
+            return;
         }
-        user = repository.getUserByUserName(username);
-        if(user != null){
-            String password = binding.passwordLoginEditText.getText().toString();
-            if(password.equals(user.getPassword())){
-                return true;
+        LiveData<User> userObserver = repository.getUserByUserName(username);
+        userObserver.observe(this, user -> {
+            if(user != null){
+                String password = binding.passwordLoginEditText.getText().toString();
+                if(password.equals(user.getPassword())){
+                    //This will switch to landing page once implemented for now it will toast
+                    toastMaker("SUCCESS!!!");
+                } else {
+                    toastMaker("Invalid password");
+                    binding.passwordLoginEditText.setSelection(0);
+                }
             } else {
-                toastMaker("Username may not be blank");
-                return false;
+                toastMaker(String.format("No user %s found", username));
+                binding.userNameLoginEditText.setSelection(0);
             }
-
-        }
-        toastMaker(String.format("No %s found", username));
-        return false;
+        });
     }
 
 

@@ -3,6 +3,8 @@ package com.example.project2.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.project2.database.entities.User;
 import com.example.project2.MainActivity;
 
@@ -66,19 +68,7 @@ public class UserRepository {
     }
 
 
-    public User getUserByUserName(String username) {
-        Future<User> future = ProjectDataBase.databaseWriteExecutor.submit(
-                new Callable<User>() {
-                    @Override
-                    public User call() throws Exception {
-                        return userDAO.getUserByUserName(username);
-                    }
-                });
-        try{
-            future.get();
-        } catch (InterruptedException | ExecutionException e){
-            Log.i(MainActivity.TAG, "Problems with getting username in the repository");
-        }
-        return null;
+    public LiveData<User> getUserByUserName(String username) {
+        return userDAO.getUserByUserName(username);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.project2.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -29,6 +30,6 @@ public interface UserDAO {
     @Query("DELETE from " + ProjectDataBase.USER_TABLE)
     void deleteAll();
 
-    @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE username == :username")User
-    getUserByUserName(String username);
+    @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE username == :username")
+    LiveData<User> getUserByUserName(String username);
 }

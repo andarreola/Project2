@@ -28,4 +28,7 @@ public interface UserDAO {
 
     @Query("DELETE from " + ProjectDataBase.USER_TABLE)
     void deleteAll();
+
+    @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE username == :username")User
+    getUserByUserName(String username);
 }

@@ -2,6 +2,7 @@ package com.example.project2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import com.example.project2.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private UserRepository repository;
+    //private UserRepository repository;
     public static final String TAG = "DAC_CALORIE_TRACKER";
     int loggedInUserID = -1;
     //TODO: Add login information
@@ -24,14 +25,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         loginUser();
-        if(loggedInUserID == -1){
+        //This is used to check if the user is logged in.
+        if(loggedInUserID != -1){
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
-        repository = UserRepository.getRepository(getApplication());
+
+        binding.mainActivityLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        //repository = UserRepository.getRepository(getApplication());
     }
 
     private void loginUser() {

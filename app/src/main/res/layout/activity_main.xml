@@ -10,10 +10,46 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/calorie_tracker"
+        android:textSize="38sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108"
+        android:id="@+id/mainActivityTextView"
+
+
+        />
+
+    <Button
+
+        android:layout_width="180dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainActivityTextView"
+        android:text="@string/login"
+        android:textSize="24sp"
+        android:layout_margin="18dp"
+        android:id="@+id/mainActivityLoginButton"
+        android:backgroundTint="#48b064"
+        />
+
+    <Button
+        android:id="@+id/mainCreateAccountButton"
+        android:layout_width="180dp"
+        android:layout_height="75dp"
+        android:layout_margin="18dp"
+        android:layout_marginTop="156dp"
+        android:backgroundTint="#48b064"
+        android:text="@string/create_account"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainActivityLoginButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

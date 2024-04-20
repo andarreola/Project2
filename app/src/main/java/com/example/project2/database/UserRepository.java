@@ -65,4 +65,20 @@ public class UserRepository {
         });
     }
 
+
+    public User getUserByUserName(String username) {
+        Future<User> future = ProjectDataBase.databaseWriteExecutor.submit(
+                new Callable<User>() {
+                    @Override
+                    public User call() throws Exception {
+                        return userDAO.getUserByUserName(username);
+                    }
+                });
+        try{
+            future.get();
+        } catch (InterruptedException | ExecutionException e){
+            Log.i(MainActivity.TAG, "Problems with getting username in the repository");
+        }
+        return null;
+    }
 }

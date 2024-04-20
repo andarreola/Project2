@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dip"
         android:id="@+id/titleLoginTextView"
-        android:textSize="38sp"
+        android:textSize="34sp"
         android:text="@string/welcome_to_calorie_tracker_please_sign_in"
         android:gravity="center"
         android:layout_margin="16dip"

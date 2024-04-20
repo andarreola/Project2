@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LandingPage">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dip"
+        android:id="@+id/titleLoginTextView"
+        android:textSize="26sp"
+        android:text="@string/welcome_to_your_calorie_tracker_"
+        android:gravity="center"
+        android:layout_margin="16dip"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/addlogButton"
+        android:layout_width="180dp"
+        android:layout_height="75dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="192dp"
+        android:backgroundTint="#48b064"
+        android:text="@string/add_meal_entry"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView"
+        app:layout_constraintVertical_bias="0.385" />
+
+    <Button
+        android:id="@+id/logButton"
+        android:layout_width="180dp"
+        android:layout_height="75dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#48b064"
+        android:text="@string/view_entries"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addlogButton"
+        app:layout_constraintVertical_bias="0.189" />
+
+    <Button
+        android:id="@+id/adminButton"
+        android:layout_width="180dp"
+        android:layout_height="75dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#48b064"
+        android:text="Admin Center"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logButton"
+        app:layout_constraintVertical_bias="0.516"
+        android:visibility="invisible"/>
+
+    <ProgressBar
+        android:id="@+id/proteintracker"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView" />
+
+    <TextView
+        android:id="@+id/caloriemeter"
+        android:layout_width="218dp"
+        android:layout_height="36dp"
+        android:layout_margin="16dip"
+        android:gravity="center"
+        android:text="@string/today_s_calorie_goal"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/proteintracker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/proteinmeter"
+        android:layout_width="218dp"
+        android:layout_height="36dp"
+        android:layout_margin="16dip"
+        android:gravity="center"
+        android:text="@string/today_s_protein_goal"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/calorietracker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/proteintracker"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/calorietracker"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

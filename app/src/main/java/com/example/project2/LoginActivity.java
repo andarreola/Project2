@@ -34,6 +34,14 @@ public class LoginActivity extends AppCompatActivity {
                 verifyUser();
             }
         });
+
+        binding.returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MainActivity.mainActivityFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void verifyUser(){

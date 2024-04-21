@@ -1,5 +1,6 @@
 package com.example.project2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -48,5 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginUser() {
         //TODO: create login method
+    }
+
+    static Intent mainActivityFactory(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 }

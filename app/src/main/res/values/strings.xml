@@ -12,4 +12,5 @@
     <string name="today_s_protein_goal">Today\'s Protein Goal</string>
     <string name="add_meal_entry">Add Meal Entry</string>
     <string name="view_entries">View Entries</string>
+    <string name="log_out">Log Out</string>
 </resources>

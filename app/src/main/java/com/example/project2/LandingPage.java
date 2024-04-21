@@ -12,15 +12,18 @@ import androidx.core.view.WindowInsetsCompat;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.*;
 
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
+import com.example.project2.databinding.ActivityLandingPageBinding;
 
 import java.util.*;
 
 public class LandingPage extends AppCompatActivity {
 
+    private static final String CONVERTED_VALUE_EXTRA_KEY = "LoginActivity_username";
     private UserRepository repository;
     com.example.project2.databinding.ActivityLandingPageBinding binding;
 
@@ -30,8 +33,10 @@ public class LandingPage extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         setContentView(R.layout.activity_landing_page);
-        binding = com.example.project2.databinding.ActivityLandingPageBinding.inflate(getLayoutInflater());
+        binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        repository = UserRepository.getRepository(getApplication());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -39,8 +44,26 @@ public class LandingPage extends AppCompatActivity {
             return insets;
         });
 
-        repository = UserRepository.getRepository(getApplication());
+        String username = getIntent().getStringExtra(CONVERTED_VALUE_EXTRA_KEY);
 
+        System.out.println(username);
+        LiveData<User> userObserver = repository.getIsAdminByUserName(username);
+        userObserver.observe(this, user -> {
+            if(user != null) {
+                System.out.println(user.getIsAdmin());
+                if (user.getIsAdmin()) {
+                    binding.adminButton.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MainActivity.mainActivityFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     public void createGoalProtein(int goal) {
@@ -61,14 +84,14 @@ public class LandingPage extends AppCompatActivity {
         binding.calorietracker.setProgress(binding.calorietracker.getProgress()+addition);
     }
 
-    static Intent landingPageIntentFactory(Context context){
-        return new Intent(context, LandingPage.class);
+    static Intent landingPageIntentFactory(Context context, String username){
+        Intent intent = new Intent(context, LandingPage.class);
+        intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, username);
+        return intent;
     }
 
     private void toastMaker(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
-
 
 }

@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if(password.equals(user.getPassword())){
                     //This will switch to landing page once implemented for now it will toast
-                    Intent intent = LandingPage.landingPageIntentFactory(getApplicationContext());
+                    Intent intent = LandingPage.landingPageIntentFactory(getApplicationContext(), username);
                     startActivity(intent);
                     toastMaker("SUCCESS!!!");
                 } else {
@@ -66,8 +66,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     static Intent loginIntentFactory(Context context){
-        return new Intent(context, LoginActivity.class);
+        Intent intent = new Intent(context, LoginActivity.class);
+        return intent;
     }
+
 
     private void toastMaker(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

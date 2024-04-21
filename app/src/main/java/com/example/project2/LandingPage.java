@@ -1,6 +1,7 @@
 package com.example.project2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -40,7 +41,7 @@ public class LandingPage extends AppCompatActivity {
             return insets;
         });
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Admin-UserTable").build();
+        //AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Admin-UserTable").build();
 
     }
 
@@ -62,38 +63,10 @@ public class LandingPage extends AppCompatActivity {
         binding.calorietracker.setProgress(binding.calorietracker.getProgress()+addition);
     }
 
-    //Admin Database
-
-    @Entity
-    public class User {
-        @PrimaryKey
-        public int uid;
-
-        @ColumnInfo(name = "username")
-        public String username;
-
-        @ColumnInfo(name = "isAdmin")
-        public boolean isAdmin;
+    static Intent landingPageIntentFactory(Context context){
+        return new Intent(context, LandingPage.class);
     }
 
-    @Dao
-    public interface UserDao {
-        @Query("SELECT * FROM user")
-        List<User> getAll();
 
-//        @Query("SELECT * FROM user WHERE username LIKE :username)
-//        User findByUsername(String username);
-
-        @Insert
-        void insertAll(User... users);
-
-        @Delete
-        void delete(User user);
-    }
-
-    @Database(entities = {User.class}, version = 1)
-    public abstract class AppDatabase extends RoomDatabase {
-        public abstract UserDao userDao();
-    }
 
 }

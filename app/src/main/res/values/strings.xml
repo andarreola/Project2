@@ -6,4 +6,10 @@
     <string name="login">Login</string>
     <string name="calorie_tracker">Calorie Tracker</string>
     <string name="create_account">Create Account</string>
+    <string name="welcome_to_your_calorie_tracker">Welcome to your calorie tracker</string>
+    <string name="welcome_to_your_calorie_tracker_">Welcome to your Calorie Tracker</string>
+    <string name="today_s_calorie_goal">Today\'s Calorie Goal</string>
+    <string name="today_s_protein_goal">Today\'s Protein Goal</string>
+    <string name="add_meal_entry">Add Meal Entry</string>
+    <string name="view_entries">View Entries</string>
 </resources>

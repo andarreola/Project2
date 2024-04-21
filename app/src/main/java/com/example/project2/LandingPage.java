@@ -4,26 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.room.*;
-//import androidx.room.ColumnInfo;
-//import androidx.room.Dao;
-//import androidx.room.Database;
-//import androidx.room.Delete;
-//import androidx.room.Entity;
-//import androidx.room.Insert;
-//import androidx.room.PrimaryKey;
+
+import com.example.project2.database.UserRepository;
+import com.example.project2.database.entities.User;
+
 import java.util.*;
 
 public class LandingPage extends AppCompatActivity {
 
+    private UserRepository repository;
     com.example.project2.databinding.ActivityLandingPageBinding binding;
 
     @Override
@@ -41,7 +39,7 @@ public class LandingPage extends AppCompatActivity {
             return insets;
         });
 
-        //AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Admin-UserTable").build();
+        repository = UserRepository.getRepository(getApplication());
 
     }
 
@@ -65,6 +63,10 @@ public class LandingPage extends AppCompatActivity {
 
     static Intent landingPageIntentFactory(Context context){
         return new Intent(context, LandingPage.class);
+    }
+
+    private void toastMaker(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 

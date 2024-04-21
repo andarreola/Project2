@@ -45,8 +45,9 @@ public class LandingPage extends AppCompatActivity {
         });
 
         String username = getIntent().getStringExtra(CONVERTED_VALUE_EXTRA_KEY);
+        binding.displayusername.setText(username);
 
-        System.out.println(username);
+
         LiveData<User> userObserver = repository.getIsAdminByUserName(username);
         userObserver.observe(this, user -> {
             if(user != null) {

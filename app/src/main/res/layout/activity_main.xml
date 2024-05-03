@@ -8,41 +8,41 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/mainActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/calorie_tracker"
         android:textSize="38sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108"
-        android:id="@+id/mainActivityTextView"
 
 
-        />
+        app:layout_constraintVertical_bias="0.342" />
 
     <Button
 
+        android:id="@+id/mainActivityLoginButton"
         android:layout_width="180dp"
         android:layout_height="75dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainActivityTextView"
+        android:layout_margin="18dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#48b064"
         android:text="@string/login"
         android:textSize="24sp"
-        android:layout_margin="18dp"
-        android:id="@+id/mainActivityLoginButton"
-        android:backgroundTint="#48b064"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainActivityTextView" />
 
     <Button
         android:id="@+id/mainCreateAccountButton"
         android:layout_width="180dp"
         android:layout_height="75dp"
         android:layout_margin="18dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="124dp"
         android:backgroundTint="#48b064"
         android:text="@string/create_account"
         android:textSize="24sp"

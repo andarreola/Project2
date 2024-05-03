@@ -6,13 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-//import androidx.core.graphics.Insets;
-//import androidx.core.view.ViewCompat;
-//import androidx.core.view.WindowInsetsCompat;
-
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivitySignUpPageBinding;

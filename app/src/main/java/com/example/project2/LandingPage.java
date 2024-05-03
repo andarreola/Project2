@@ -65,6 +65,14 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.logButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ViewEntriesActivity.viewEntriesIntentFactory(getApplicationContext(), username);
+                startActivity(intent);
+            }
+        });
     }
 
     public void createGoalProtein(int goal) {

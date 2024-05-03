@@ -44,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.mainCreateAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = SignUpPage.signUpPageFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
         //repository = UserRepository.getRepository(getApplication());
     }
 

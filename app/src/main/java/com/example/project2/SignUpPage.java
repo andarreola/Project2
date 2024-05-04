@@ -72,7 +72,6 @@ public class SignUpPage extends AppCompatActivity {
                 toastMaker(password);
             }
         });
-
     }
 
     private void toastMaker(String message){

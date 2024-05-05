@@ -15,4 +15,15 @@
     <string name="log_out">Log Out</string>
     <string name="go_back">Go back</string>
     <string name="sign_up">Sign Up</string>
+    <string name="meal_title">Meal title:</string>
+    <string name="enter_a_meal_into_your_log">Enter a meal into your log:</string>
+    <string name="enter_meal_title">Enter Meal Title:</string>
+    <string name="add_a_meal_to_your_log">Add a meal to your log</string>
+    <string name="enter_calorie_count">Enter Calorie Count:</string>
+    <string name="title">Title</string>
+    <string name="count">Count</string>
+    <string name="back">Back</string>
+    <string name="confirm">Confirm</string>
+    <string name="calories">Calories</string>
+    <string name="protein">Protein</string>
 </resources>

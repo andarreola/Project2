@@ -58,6 +58,15 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        binding.addlogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MealLogActivity.landingPageToMealLogIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        //watching log out button for prompt to log out and send intent
         binding.logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +97,11 @@ public class LandingPage extends AppCompatActivity {
     static Intent landingPageIntentFactory(Context context, String username){
         Intent intent = new Intent(context, LandingPage.class);
         intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, username);
+        return intent;
+    }
+
+    static Intent mealLogToLandingPageIntent(Context context) {
+        Intent intent = new Intent(context, LandingPage.class);
         return intent;
     }
 

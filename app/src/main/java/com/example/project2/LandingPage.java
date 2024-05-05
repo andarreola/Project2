@@ -101,6 +101,16 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //For button to go into the adminPage
+
+        binding.adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AdminPage.adminPageIntentFactory(getApplicationContext(), username);
+                startActivity(intent);
+            }
+        });
     }
 
     public void createGoalProtein(int goal) {

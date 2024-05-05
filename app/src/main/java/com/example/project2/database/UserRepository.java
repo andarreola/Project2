@@ -8,7 +8,9 @@ import androidx.lifecycle.LiveData;
 import com.example.project2.database.entities.User;
 import com.example.project2.MainActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -60,6 +62,8 @@ public class UserRepository {
         return null;
     }
 
+
+
     public void insertUser(User... user){
         ProjectDataBase.databaseWriteExecutor.execute(() ->
         {
@@ -68,11 +72,17 @@ public class UserRepository {
     }
 
 
+
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
     }
 
     public LiveData<User> getIsAdminByUserName(String username) {
         return userDAO.getIsAdminByUserName(username);
+    }
+
+    //for recycler
+    public LiveData<List<User>> getAllLiveUsers(){
+        return userDAO.getAllLiveUsers();
     }
 }

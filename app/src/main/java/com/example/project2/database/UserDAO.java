@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.project2.database.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,4 +40,7 @@ public interface UserDAO {
     @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE id == :id")
     LiveData<User> getUserById(String id);
 
+    //for recycler
+    @Query("SELECT * FROM " + ProjectDataBase.USER_TABLE + " ORDER BY username")
+    LiveData<List<User>> getAllLiveUsers();
 }

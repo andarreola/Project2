@@ -6,18 +6,21 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.project2.database.TypeConverters.LocalDateTypeConverter;
 import com.example.project2.database.entities.Meal;
 import com.example.project2.database.entities.User;
 import com.example.project2.MainActivity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Meal.class}, version = 1, exportSchema = false)
+@TypeConverters(LocalDateTypeConverter.class)
+@Database(entities = {Meal.class}, version = 2, exportSchema = false)
 public abstract class MealDataBase extends RoomDatabase {
 
-    private static final String DATABASE_NAME = "Project_database";
+    private static final String DATABASE_NAME = "meal_database";
     public static final String MEAL_TABLE = "mealTable";
 
     private static volatile MealDataBase INSTANCE;
@@ -33,7 +36,7 @@ public abstract class MealDataBase extends RoomDatabase {
                                     DATABASE_NAME
                             )
                             .fallbackToDestructiveMigration()
-                            .addCallback(addDefaultValues)
+                            //.addCallback(addDefaultValues)
                             .build();
                 }
             }

@@ -26,4 +26,11 @@
     <string name="confirm">Confirm</string>
     <string name="calories">Calories</string>
     <string name="protein">Protein</string>
+    <string name="add_a_meal_to_your_log2">Add a Meal to Your Log</string>
+    <string name="enter_protein_count">Enter Protein Count:</string>
+    <string name="welcome_to_your_calorie_tracker1">Welcome to your Calorie Tracker,</string>
+    <string name="username1">username</string>
+    <string name="previous_log_entries">Previous Log Entries:</string>
+    <string name="hello">Hello</string>
+    <string name="back2">Back</string>
 </resources>

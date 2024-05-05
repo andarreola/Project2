@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-
+import com.example.project2.database.MealRepository;
+import com.example.project2.database.entities.Meal;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivityLoginBinding;
@@ -17,6 +17,7 @@ import com.example.project2.databinding.ActivityLoginBinding;
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
+    private MealRepository Mrepository;
     private UserRepository repository;
     private User user = null;
 
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Mrepository = MealRepository.getRepository(getApplication());
         repository = UserRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {

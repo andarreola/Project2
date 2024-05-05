@@ -96,7 +96,9 @@ public class Meal {
         sb.append("Protein: ").append(protein).append("\n");
         sb.append("Calories: ").append(calories).append("\n");
         sb.append("Date: ").append(date.toString()).append("\n");
+        sb.append("\n");
         sb.append("- - - - - - - - - - - - - - - - - - - - - - - - -");
+        sb.append("\n");
         return sb.toString();
     }
 }

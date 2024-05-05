@@ -20,6 +20,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userDisplayRecyclerView"
+        android:layout_width="412dp"
+        android:layout_height="550dp"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/adminPageBackButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AdminPageTextView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/user_recycler_item" />
+
+
     <Button
         android:id="@+id/adminPageBackButton"
         android:layout_width="wrap_content"

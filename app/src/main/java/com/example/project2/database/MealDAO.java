@@ -23,8 +23,11 @@ public interface MealDAO {
     @Delete
     void delete(Meal meal);
 
-    @Query("SELECT * FROM " + MealDataBase.MEAL_TABLE + " ORDER BY title")
+    @Query("SELECT * FROM " + MealDataBase.MEAL_TABLE + " ORDER BY date")
     List<Meal> getAllMeals();
+
+    @Query("SELECT * FROM " + MealDataBase.MEAL_TABLE + " WHERE username == :username ORDER BY date DESC")
+    LiveData<List<Meal>> getAllMealsByUsername(String username);
 
     @Query("DELETE from " + MealDataBase.MEAL_TABLE)
     void deleteAll();

@@ -55,7 +55,6 @@ public class MealLogActivity extends AppCompatActivity {
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toastMaker("You clicked the button!");
                 addMealLog();
             }
         });
@@ -71,13 +70,14 @@ public class MealLogActivity extends AppCompatActivity {
     }
 
     public void addMealLog() {
-        String title = binding.mealtitleEdittext.getText().toString();
-        Integer protein = Integer.parseInt(binding.proteinEdittext.getText().toString());
-        Integer calories = Integer.parseInt(binding.calorieEdittext.getText().toString());
-        if(title.isEmpty() || protein == null || calories == null){
+        if(binding.mealtitleEdittext.getText() == null || binding.proteinEdittext.getText() == null
+                || binding.calorieEdittext.getText() == null) {
             toastMaker("Please fill all text boxes.");
             return;
         }
+        String title = binding.mealtitleEdittext.getText().toString();
+        Integer protein = Integer.parseInt(binding.proteinEdittext.getText().toString());
+        Integer calories = Integer.parseInt(binding.calorieEdittext.getText().toString());
         repository.insertMeal(new Meal(username1, title, protein, calories));
         toastMaker("Entry added successfully!");
     }

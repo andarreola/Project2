@@ -19,6 +19,7 @@ import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivityLandingPageBinding;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class LandingPage extends AppCompatActivity {
@@ -27,7 +28,8 @@ public class LandingPage extends AppCompatActivity {
     private MealRepository Mrepository;
     private UserRepository repository;
     com.example.project2.databinding.ActivityLandingPageBinding binding;
-
+    public final int calorieGoal = 2250;
+    public final int proteinGoal = 65;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,21 @@ public class LandingPage extends AppCompatActivity {
         binding.displayusername.setText(username);
 
 
+        //Progress bar build below
+        createGoalProtein(proteinGoal);
+        createGoalCalories(calorieGoal);
+        ArrayList<Meal> meals = Mrepository.getAllMeals();
+        ArrayList<Meal> userMeals = new ArrayList<>();
+        for(int i = 0; i < meals.size(); i++) {
+            if(meals.get(i).getUsername().equals(username)) {
+                userMeals.add(meals.get(i));
+            }
+        }
+        updateProteinCount(userMeals);
+        updateCalorieCount(userMeals);
+        //done
+
+
         LiveData<User> userObserver = repository.getIsAdminByUserName(username);
         userObserver.observe(this, user -> {
             if(user != null) {
@@ -64,6 +81,14 @@ public class LandingPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = MealLogActivity.landingPageToMealLogIntent(getApplicationContext(), username);
+                startActivity(intent);
+            }
+        });
+
+        binding.logButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = LogViewActivity.landingPageToViewLogIntent(getApplicationContext(), username);
                 startActivity(intent);
             }
         });
@@ -88,11 +113,25 @@ public class LandingPage extends AppCompatActivity {
         binding.calorietracker.setProgress(0);
     }
 
-    public void updateProteinCount(int addition) {
+    public void updateProteinCount(ArrayList<Meal> meals) {
+        int addition = 0;
+        for(int i = 0; i < meals.size(); i++) {
+            int today = (LocalDate.now().getDayOfYear())*(LocalDate.now().getYear());
+            if((meals.get(i).getDate().getDayOfYear()) * (meals.get(i).getDate().getYear()) == today) {
+                addition += meals.get(i).getProtein();
+            }
+        }
         binding.proteintracker.setProgress(binding.proteintracker.getProgress()+addition);
     }
 
-    public void updateCalorieCount(int addition) {
+    public void updateCalorieCount(ArrayList<Meal> meals) {
+        int addition = 0;
+        for(int i = 0; i < meals.size(); i++) {
+            int today = (LocalDate.now().getDayOfYear())*(LocalDate.now().getYear());
+            if((meals.get(i).getDate().getDayOfYear()) * (meals.get(i).getDate().getYear()) == today) {
+                addition += meals.get(i).getCalories();
+            }
+        }
         binding.calorietracker.setProgress(binding.calorietracker.getProgress()+addition);
     }
 
@@ -103,6 +142,12 @@ public class LandingPage extends AppCompatActivity {
     }
 
     static Intent mealLogToLandingPageIntent(Context context, String username) {
+        Intent intent = new Intent(context, LandingPage.class);
+        intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, username);
+        return intent;
+    }
+
+    static Intent viewLogToLandingPageIntent(Context context, String username) {
         Intent intent = new Intent(context, LandingPage.class);
         intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, username);
         return intent;

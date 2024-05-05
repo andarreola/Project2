@@ -8,6 +8,7 @@ import com.example.project2.database.entities.Meal;
 import com.example.project2.database.entities.User;
 import com.example.project2.MainActivity;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -58,6 +59,10 @@ public class MealRepository {
             Log.i(MainActivity.TAG, "Problem when getting all Meals in the repository");
         }
         return null;
+    }
+
+    public LiveData<List<Meal>> getAllMealsByUsername(String username) {
+        return mealDAO.getAllMealsByUsername(username);
     }
 
     public void insertMeal(Meal... meal){

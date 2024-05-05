@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
+import com.example.project2.database.MealRepository;
+import com.example.project2.database.entities.Meal;
 import com.example.project2.database.ProjectDataBase;
 import com.example.project2.database.UserRepository;
 import com.example.project2.databinding.ActivityMainBinding;
@@ -18,6 +19,7 @@ import com.example.project2.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private MealRepository Mrepository;
     //private UserRepository repository;
     public static final String TAG = "DAC_CALORIE_TRACKER";
     int loggedInUserID = -1;

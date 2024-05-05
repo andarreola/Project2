@@ -12,7 +12,8 @@ import androidx.lifecycle.LiveData;
 //import androidx.core.graphics.Insets;
 //import androidx.core.view.ViewCompat;
 //import androidx.core.view.WindowInsetsCompat;
-
+import com.example.project2.database.MealRepository;
+import com.example.project2.database.entities.Meal;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivitySignUpPageBinding;
@@ -20,6 +21,8 @@ import com.example.project2.databinding.ActivitySignUpPageBinding;
 public class SignUpPage extends AppCompatActivity {
 
     private ActivitySignUpPageBinding binding;
+
+    private MealRepository Mrepository;
     private UserRepository repository;
     private User user = null;
 
@@ -29,6 +32,7 @@ public class SignUpPage extends AppCompatActivity {
         binding = ActivitySignUpPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Mrepository = MealRepository.getRepository(getApplication());
         repository = UserRepository.getRepository(getApplication());
 
         binding.signUpGoBackButton.setOnClickListener(new View.OnClickListener() {

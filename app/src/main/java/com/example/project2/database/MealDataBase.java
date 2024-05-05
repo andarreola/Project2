@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {Meal.class}, version = 1, exportSchema = false)
 public abstract class MealDataBase extends RoomDatabase {
 
-    private static final String DATABASE_NAME = "Project_database";
+    private static final String DATABASE_NAME = "meal_database";
     public static final String MEAL_TABLE = "mealTable";
 
     private static volatile MealDataBase INSTANCE;
@@ -33,7 +33,7 @@ public abstract class MealDataBase extends RoomDatabase {
                                     DATABASE_NAME
                             )
                             .fallbackToDestructiveMigration()
-                            .addCallback(addDefaultValues)
+                            //.addCallback(addDefaultValues)
                             .build();
                 }
             }

@@ -17,11 +17,12 @@ public class MealRepository {
     private ArrayList<Meal> allMeals;
 
     private static MealRepository repository;
-    private MealRepository(Application application){
+    public MealRepository(Application application){
         MealDataBase db = MealDataBase.getDatabase(application);
         this.mealDAO = db.mealDAO();
         this.allMeals = (ArrayList<Meal>) this.mealDAO.getAllMeals();
     }
+
 
     public static MealRepository getRepository(Application application){
         if(repository != null){

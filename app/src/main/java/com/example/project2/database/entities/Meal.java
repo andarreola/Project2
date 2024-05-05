@@ -10,10 +10,12 @@ public class Meal {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String title;
+    private String username;
     private int protein;
     private int calories;
 
-    public Meal(String title, int protein, int calories){
+    public Meal(String username, String title, int protein, int calories){
+        this.username = username;
         this.title = title;
         this.protein = protein;
         this.calories = calories;
@@ -24,12 +26,12 @@ public class Meal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meal meal = (Meal) o;
-        return id == meal.id && Objects.equals(title, meal.title) && protein == meal.protein && calories == meal.calories;
+        return username.equals(meal.username) && id == meal.id && Objects.equals(title, meal.title) && protein == meal.protein && calories == meal.calories;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, protein, calories);
+        return Objects.hash(id, username, title, protein, calories);
     }
 
     public int getId() {
@@ -38,6 +40,14 @@ public class Meal {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {

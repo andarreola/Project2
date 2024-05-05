@@ -11,10 +11,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.*;
-
+import com.example.project2.database.MealRepository;
+import com.example.project2.database.entities.Meal;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivityLandingPageBinding;
@@ -24,6 +24,7 @@ import java.util.*;
 public class LandingPage extends AppCompatActivity {
 
     private static final String CONVERTED_VALUE_EXTRA_KEY = "LoginActivity_username";
+    private MealRepository Mrepository;
     private UserRepository repository;
     com.example.project2.databinding.ActivityLandingPageBinding binding;
 
@@ -36,6 +37,7 @@ public class LandingPage extends AppCompatActivity {
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Mrepository = MealRepository.getRepository(getApplication());
         repository = UserRepository.getRepository(getApplication());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -61,7 +63,7 @@ public class LandingPage extends AppCompatActivity {
         binding.addlogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MealLogActivity.landingPageToMealLogIntent(getApplicationContext());
+                Intent intent = MealLogActivity.landingPageToMealLogIntent(getApplicationContext(), username);
                 startActivity(intent);
             }
         });
@@ -100,8 +102,9 @@ public class LandingPage extends AppCompatActivity {
         return intent;
     }
 
-    static Intent mealLogToLandingPageIntent(Context context) {
+    static Intent mealLogToLandingPageIntent(Context context, String username) {
         Intent intent = new Intent(context, LandingPage.class);
+        intent.putExtra(CONVERTED_VALUE_EXTRA_KEY, username);
         return intent;
     }
 

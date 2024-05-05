@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.project2.ViewHolders.UserAdapter;
+import com.example.project2.ViewHolders.UserViewModel;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivityAdminPageBinding;
@@ -18,6 +23,7 @@ public class AdminPage extends AppCompatActivity {
     private UserRepository repository;
     private User user = null;
     private ActivityAdminPageBinding binding;
+    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,16 @@ public class AdminPage extends AppCompatActivity {
         repository = UserRepository.getRepository(getApplication());
 
         String username = getIntent().getStringExtra(USERNAME_FROM_LANDING_KEY);
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        RecyclerView recyclerView = binding.userDisplayRecyclerView;
+        final UserAdapter adapter = new UserAdapter(new UserAdapter.UserDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        userViewModel.getAllUsers().observe(this, users -> {
+            adapter.submitList(users);
+        });
 
         binding.adminPageBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

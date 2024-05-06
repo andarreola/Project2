@@ -25,6 +25,9 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
+    @Query("UPDATE " + ProjectDataBase.USER_TABLE + " SET password = :password WHERE username = :username")
+    void updatePassword(String username, String password);
+
     @Query("SELECT * FROM " + ProjectDataBase.USER_TABLE + " ORDER BY username")
     List<User> getAllUsers();
 
@@ -33,6 +36,9 @@ public interface UserDAO {
 
     @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
+
+    @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE username == :username")
+    LiveData<User> getPasswordByUserName(String username);
 
     @Query("SELECT * from " + ProjectDataBase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getIsAdminByUserName(String username);

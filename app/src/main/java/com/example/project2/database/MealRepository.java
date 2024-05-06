@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import com.example.project2.database.entities.Meal;
 import com.example.project2.database.entities.User;
 import com.example.project2.MainActivity;
+import com.example.project2.database.entities.UserProfile;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -70,6 +72,17 @@ public class MealRepository {
         {
             mealDAO.insert(meal);
         });
+    }
+
+    public void deleteMeal(Meal meal) {
+        MealDataBase.databaseWriteExecutor.execute(() ->
+        {
+            mealDAO.delete(meal);
+        });
+    }
+
+    public void updateTitle(String title, String nTitle) {
+        mealDAO.updateTitle(title, nTitle);
     }
 
 

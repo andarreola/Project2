@@ -42,7 +42,7 @@ public interface UserProfileDAO {
     int getDateByUserName(String username);
 
     @Query("UPDATE " + ProjectDataBase.USERPROFILE_TABLE + " SET streak = :value WHERE username = :username")
-            void updateStreak(String username, int value);
+    void updateStreak(String username, int value);
 
     @Query("UPDATE " + ProjectDataBase.USERPROFILE_TABLE + " SET date = :data WHERE username = :username")
     void updateDate(String username, LocalDateTime data);

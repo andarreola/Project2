@@ -81,17 +81,27 @@ class DatabaseTests extends AppCompatActivity{
     //UserProfile table tests here
     @Test
     void insertUserTest(){
-
+        UserProfile test = new UserProfile("username");
+        userProfileRepository.insertUser(test);
+        assertNotNull(userProfileRepository.getUserProfileByUsername("username"));
     }
 
     @Test
     void updateStreakTest(){
+        UserProfile test = new UserProfile("username");
+        userProfileRepository.insertUser(test);
+        userProfileRepository.updateStreak("title", 1);
 
+        assertEquals(userProfileRepository.getStreakByUserName("username"), 1);
     }
 
     @Test
     void deleteUserTest(){
+        UserProfile test = new UserProfile("username");
+        userProfileRepository.insertUser(test);
+        userProfileRepository.deleteUser(test);
 
+        assertNull(userProfileRepository.getUserProfileByUsername("username"));
     }
 
 }

@@ -79,5 +79,19 @@ class DatabaseTests extends AppCompatActivity{
 
 
     //UserProfile table tests here
+    @Test
+    void insertUserTest(){
+
+    }
+
+    @Test
+    void updateStreakTest(){
+
+    }
+
+    @Test
+    void deleteUserTest(){
+
+    }
 
 }

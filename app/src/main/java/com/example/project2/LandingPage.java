@@ -9,17 +9,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 import androidx.lifecycle.LiveData;
-import androidx.room.*;
+
+import android.widget.Toast;
+
 import com.example.project2.database.MealRepository;
+import com.example.project2.database.UserProfileRepository;
 import com.example.project2.database.entities.Meal;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
 import com.example.project2.databinding.ActivityLandingPageBinding;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class LandingPage extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class LandingPage extends AppCompatActivity {
     private static final String CONVERTED_VALUE_EXTRA_KEY = "LoginActivity_username";
     private MealRepository Mrepository;
     private UserRepository repository;
+    private UserProfileRepository UPrepository;
     com.example.project2.databinding.ActivityLandingPageBinding binding;
     public final int calorieGoal = 2250;
     public final int proteinGoal = 65;
@@ -41,6 +44,7 @@ public class LandingPage extends AppCompatActivity {
 
         Mrepository = MealRepository.getRepository(getApplication());
         repository = UserRepository.getRepository(getApplication());
+        UPrepository = UserProfileRepository.getRepository(getApplication());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -65,6 +69,38 @@ public class LandingPage extends AppCompatActivity {
         updateProteinCount(userMeals);
         updateCalorieCount(userMeals);
         //done
+
+
+        int streak = UPrepository.getUserProfileByUsername(username).getStreak();
+        int lastLoginDate = UPrepository.getUserProfileByUsername(username).getDate().getDayOfYear();
+
+        int todayDate = LocalDateTime.now().getDayOfYear();
+        if(lastLoginDate == todayDate) {
+            //nothing
+        }
+        else if(lastLoginDate +1 == todayDate) {
+            streak++;
+            UPrepository.updateStreak(username, streak);
+            UPrepository.updateDate(username, LocalDateTime.now());
+        }
+        else {
+            streak = 1;
+            UPrepository.updateStreak(username, streak);
+            UPrepository.updateDate(username, LocalDateTime.now());
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(streak);
+        String text = sb.toString();
+        binding.displaystreak.setText(text);
+
+
+        if(UPrepository.getUserProfileByUsername(username).isSecret()) {
+            binding.secrettext.setText("You found the secret!!");
+        }
+        else {
+            binding.secrettext.setText("Secret has not been found.");
+        }
 
 
         LiveData<User> userObserver = repository.getIsAdminByUserName(username);
@@ -103,7 +139,6 @@ public class LandingPage extends AppCompatActivity {
         });
 
         //For button to go into the adminPage
-
         binding.adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

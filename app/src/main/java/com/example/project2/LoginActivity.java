@@ -8,10 +8,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import com.example.project2.database.MealRepository;
+import com.example.project2.database.UserProfileRepository;
 import com.example.project2.database.entities.Meal;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
+import com.example.project2.database.entities.UserProfile;
 import com.example.project2.databinding.ActivityLoginBinding;
+
+import java.time.LocalDateTime;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -19,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private MealRepository Mrepository;
     private UserRepository repository;
+    private UserProfileRepository UPrepository;
     private User user = null;
 
     @Override
@@ -29,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Mrepository = MealRepository.getRepository(getApplication());
         repository = UserRepository.getRepository(getApplication());
+        UPrepository = UserProfileRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             if(user != null){
                 String password = binding.passwordLoginEditText.getText().toString();
                 if(password.equals(user.getPassword())){
-                    //This will switch to landing page once implemented for now it will toast
                     Intent intent = LandingPage.landingPageIntentFactory(getApplicationContext(), username);
                     startActivity(intent);
                     toastMaker("SUCCESS!!!");

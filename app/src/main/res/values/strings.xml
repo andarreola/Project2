@@ -34,4 +34,8 @@
     <string name="hello">Hello</string>
     <string name="back2">Back</string>
     <string name="admin_page">Admin Page</string>
+    <string name="your_current_log_in_streak">Your Current Log In Streak:</string>
+    <string name="admin_center">Admin Center</string>
+    <string name="streak">streak</string>
+    <string name="secret_has_not_been_found">Secret has not been found.</string>
 </resources>

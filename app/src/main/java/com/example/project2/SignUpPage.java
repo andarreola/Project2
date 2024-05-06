@@ -13,9 +13,11 @@ import androidx.lifecycle.LiveData;
 //import androidx.core.view.ViewCompat;
 //import androidx.core.view.WindowInsetsCompat;
 import com.example.project2.database.MealRepository;
+import com.example.project2.database.UserProfileRepository;
 import com.example.project2.database.entities.Meal;
 import com.example.project2.database.UserRepository;
 import com.example.project2.database.entities.User;
+import com.example.project2.database.entities.UserProfile;
 import com.example.project2.databinding.ActivitySignUpPageBinding;
 
 public class SignUpPage extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class SignUpPage extends AppCompatActivity {
 
     private MealRepository Mrepository;
     private UserRepository repository;
+    private UserProfileRepository UPrepository;
     private User user = null;
 
     @Override
@@ -34,6 +37,7 @@ public class SignUpPage extends AppCompatActivity {
 
         Mrepository = MealRepository.getRepository(getApplication());
         repository = UserRepository.getRepository(getApplication());
+        UPrepository = UserProfileRepository.getRepository(getApplication());
 
         binding.signUpGoBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +76,7 @@ public class SignUpPage extends AppCompatActivity {
             } else {
                 //if the user does not exists, a new user will be added to the database.
                 repository.insertUser(new User(username, password));
+                UPrepository.insertUser(new UserProfile(username));
                 toastMaker(username);
                 toastMaker(password);
             }

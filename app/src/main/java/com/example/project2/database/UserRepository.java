@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.project2.database.entities.User;
 import com.example.project2.MainActivity;
+import com.example.project2.database.entities.UserProfile;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -71,10 +72,24 @@ public class UserRepository {
         });
     }
 
+    public void deleteUser(User user) {
+        ProjectDataBase.databaseWriteExecutor.execute(() ->
+        {
+            userDAO.delete(user);
+        });
+    }
+
+    public void updatePassword(String username, String password) {
+        userDAO.updatePassword(username, password);
+    }
 
 
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<User> getPasswordByUserName(String password) {
+        return userDAO.getPasswordByUserName(password);
     }
 
     public LiveData<User> getIsAdminByUserName(String username) {

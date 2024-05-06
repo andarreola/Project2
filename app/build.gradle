@@ -29,6 +29,11 @@ android {
     buildFeatures{
         viewBinding true
     }
+
+    sourceSets {
+        test.java.srcDirs += 'app/src/test/java/com/example/project2'
+        androidTest.java.srcDirs += 'app/src/test/java/com/example/project2'
+    }
 }
 
 dependencies {
@@ -39,8 +44,10 @@ dependencies {
     implementation libs.constraintlayout
 
     testImplementation libs.junit
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    testImplementation "org.mockito:mockito-core:3.+"
 
     def room_version = "2.6.1"
 

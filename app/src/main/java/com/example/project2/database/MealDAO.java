@@ -35,4 +35,7 @@ public interface MealDAO {
     @Query("SELECT * FROM " + MealDataBase.MEAL_TABLE + " WHERE title == :title")
     LiveData<Meal> getMealByTitle(String title);
 
+    @Query("UPDATE " + MealDataBase.MEAL_TABLE + " SET title = :nTitle WHERE title = :title")
+    void updateTitle(String title, String nTitle);
+
 }
